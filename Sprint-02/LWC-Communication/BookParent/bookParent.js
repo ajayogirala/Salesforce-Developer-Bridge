@@ -1,25 +1,14 @@
+import { LightningElement } from 'lwc';
 
-import { LightningElement, api } from 'lwc';
+export default class BookParent extends LightningElement {
 
-export default class BookChild extends LightningElement {
+    recordId = '';
 
-    @api recordId;
+    message = 'Waiting...';
 
-    sendMessage() {
+    handleMessage(event){
 
-        const event = new CustomEvent(
-
-            'showmessage',
-
-            {
-
-                detail: 'Book Issued Successfully'
-
-            }
-
-        );
-
-        this.dispatchEvent(event);
+        this.message = event.detail;
 
     }
 
