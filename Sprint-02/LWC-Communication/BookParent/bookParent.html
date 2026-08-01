@@ -1,1 +1,17 @@
 
+<template>
+
+    <lightning-card title="Parent Component">
+
+        <c-book-child
+            record-id={recordId}
+            onshowmessage={handleMessage}>
+        </c-book-child>
+
+        <br/>
+
+        <p>{message}</p>
+
+    </lightning-card>
+
+</template>
