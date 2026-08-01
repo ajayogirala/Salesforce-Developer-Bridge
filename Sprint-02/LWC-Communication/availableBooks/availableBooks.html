@@ -1,1 +1,23 @@
 
+<template>
+
+    <lightning-card title="Available Books">
+
+        <div class="slds-p-around_medium">
+
+            <p><b>Parent Component</b></p>
+
+            <p>{message}</p>
+
+            <br/>
+
+            <c-book-child
+                record-id={recordId}
+                onshowmessage={handleMessage}>
+            </c-book-child>
+
+        </div>
+
+    </lightning-card>
+
+</template>
