@@ -1,4 +1,4 @@
-**# libraryHome Component
+# libraryHome Component
 
 ## Component Name
 
@@ -29,4 +29,4 @@ Successfully deployed using Lightning App Builder.
 
 - First Lightning Web Component
 - JavaScript Event Handling
-- UI Development**
+- UI Development
