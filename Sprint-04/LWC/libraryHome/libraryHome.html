@@ -1,1 +1,51 @@
+<template>
+    <lightning-card title="Library Management System">
 
+        <div class="slds-p-around_medium">
+
+            <h2><b>Library Portal</b></h2>
+
+            <p>Welcome {librarianName}</p>
+
+            <p>Today's Date : {todayDate}</p>
+
+            <br/>
+
+            <p><b>Librarian Name :</b> {librarianName}</p>
+            <p><b>Library :</b> {libraryName}</p>
+            <p><b>Department :</b> {department}</p>
+
+            <br/>
+
+            <h3><b>Library Statistics</b></h3>
+
+            <p>Number of Books : {books}</p>
+            <p>Books Issued : {issuedBooks}</p>
+            <p>Total Members : {members}</p>
+
+            <br/>
+
+            <lightning-button
+                label="Show Welcome Message"
+                variant="brand"
+                onclick={showMessage}>
+            </lightning-button>
+
+            <br/><br/>
+
+            <template if:true={message}>
+                <p>{message}</p>
+            </template>
+
+            <p><b>Status :</b> {status}</p>
+
+            <lightning-button
+                label="Issue Book"
+                variant="brand"
+                onclick={issueBook}>
+            </lightning-button>
+
+        </div>
+
+    </lightning-card>
+</template>
