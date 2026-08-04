@@ -1,8 +1,12 @@
 # Apex Classes
 
-## ApplicationService.cls
+## Overview
 
-This class implements the core business logic for the Placement Management System.
+This folder contains the Apex class developed during Sprint 05.
+
+### ApplicationService.cls
+
+Implements the complete business logic for the Placement Management System.
 
 ### Methods
 
@@ -10,10 +14,16 @@ This class implements the core business logic for the Placement Management Syste
 - createApplication()
 - updateApplicationStatus()
 
-### Concepts Covered
+### Concepts Used
 
 - SOQL
 - DML Insert
 - DML Update
 - Business Validation
-- Duplicate Check
+- Duplicate Application Check
+
+### Learning Outcome
+
+- Apex Programming
+- Service Class Design
+- Business Logic Implementation
