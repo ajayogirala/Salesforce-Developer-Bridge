@@ -1,1 +1,31 @@
+public with sharing class PlacementCategoryBatch
+implements Database.Batchable<SObject>{
 
+    public Database.QueryLocator start(Database.BatchableContext bc){
+
+        return Database.getQueryLocator(
+
+            'SELECT Id, Status__c FROM Application__c'
+
+        );
+
+    }
+
+    public void execute(Database.BatchableContext bc,
+                         List<Application__c> scope){
+
+        for(Application__c app : scope){
+
+            System.debug(app.Id);
+
+        }
+
+    }
+
+    public void finish(Database.BatchableContext bc){
+
+        System.debug('Batch Completed');
+
+    }
+
+}
