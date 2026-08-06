@@ -1,1 +1,6 @@
 
+Id appId = 'PUT_APPLICATION_ID_HERE';
+
+System.enqueueJob(
+    new OfferPostProcessingJob(appId)
+);
