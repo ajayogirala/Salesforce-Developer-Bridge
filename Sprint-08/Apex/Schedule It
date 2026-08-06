@@ -1,1 +1,7 @@
+String cronExp = '0 0 6 * * ?';
 
+System.schedule(
+'Daily Batch Job',
+cronExp,
+new ExpiredJobScheduler()
+);
