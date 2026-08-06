@@ -1,1 +1,3 @@
-
+ApplicationFutureService.sendApplication(
+'PUT_APPLICATION_ID_HERE'
+);
