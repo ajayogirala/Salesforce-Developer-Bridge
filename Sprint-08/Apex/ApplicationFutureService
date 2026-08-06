@@ -1,1 +1,23 @@
+public with sharing class ApplicationFutureService {
 
+    @future
+
+    public static void sendApplication(Id applicationId){
+
+        System.debug('Future Method Started');
+
+        Application__c app = [
+
+            SELECT Id,
+                   Status__c
+            FROM Application__c
+            WHERE Id = :applicationId
+            LIMIT 1
+        ];
+
+        System.debug(app);
+
+        System.debug('Future Method Completed');
+    }
+
+}
