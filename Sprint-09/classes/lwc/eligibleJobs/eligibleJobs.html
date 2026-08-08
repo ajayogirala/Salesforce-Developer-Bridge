@@ -1,1 +1,56 @@
+<template>
 
+    <lightning-card title="Eligible Jobs" icon-name="standard:job_profile">
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner
+                    alternative-text="Loading jobs">
+                </lightning-spinner>
+
+                <p>Loading available jobs...</p>
+            </div>
+        </template>
+
+
+        <template if:true={error}>
+            <div class="slds-p-around_medium">
+                <p>
+                    We could not load the jobs.
+                    Please try again.
+                </p>
+            </div>
+        </template>
+
+
+        <template if:true={showEmpty}>
+            <div class="slds-p-around_medium">
+                <p>
+                    No eligible jobs are currently available.
+                </p>
+            </div>
+        </template>
+
+
+        <template if:true={showJobs}>
+
+            <div class="slds-p-around_medium">
+
+                <template for:each={jobs} for:item="job">
+
+                    <c-job-card
+                        key={job.Id}
+                        job={job}
+                        student-id={recordId}
+                        onapply={handleApply}>
+                    </c-job-card>
+
+                </template>
+
+            </div>
+
+        </template>
+
+    </lightning-card>
+
+</template>
