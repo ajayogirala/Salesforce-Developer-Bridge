@@ -1,58 +1,62 @@
-<template>
+import { LightningElement, api } from 'lwc';
 
-    <article class="slds-card slds-p-around_medium slds-m-bottom_medium">
+import submitApplication
+    from '@salesforce/apex/ApplicationController.submitApplication';
 
-        <h2 class="slds-text-heading_medium">
-            {job.Name}
-        </h2>
+export default class JobCard extends LightningElement {
 
-        <div class="slds-m-top_medium">
+    @api job;
+    @api studentId;
 
-            <lightning-button
-                label="Apply"
-                variant="brand"
-                data-job-id={job.Id}
-                onclick={handleApply}
-                disabled={isSubmitting}>
-            </lightning-button>
+    isSubmitting = false;
 
-        </div>
+    successMessage;
+    errorMessage;
 
-        <template if:true={isSubmitting}>
 
-            <div class="slds-m-top_small">
+    async handleApply(event) {
 
-                <lightning-spinner
-                    size="small"
-                    alternative-text="Submitting application">
-                </lightning-spinner>
+        const jobId = event.target.dataset.jobId;
 
-                <p>Submitting your application...</p>
+        this.isSubmitting = true;
+        this.successMessage = undefined;
+        this.errorMessage = undefined;
 
-            </div>
+        try {
 
-        </template>
+            const result = await submitApplication({
+                studentId: this.studentId,
+                jobId: jobId
+            });
 
-        <template if:true={successMessage}>
+            if (result === 'Application created successfully.') {
 
-            <div class="slds-text-color_success slds-m-top_small">
+                this.successMessage =
+                    'Application submitted successfully.';
 
-                ✓ {successMessage}
+                this.dispatchEvent(
+                    new CustomEvent('apply', {
+                        detail: {
+                            jobId: jobId
+                        }
+                    })
+                );
 
-            </div>
+            } else {
 
-        </template>
+                this.errorMessage = result;
+            }
 
-        <template if:true={errorMessage}>
+        } catch (error) {
 
-            <div class="slds-text-color_error slds-m-top_small">
+            console.error(error);
 
-                {errorMessage}
+            this.errorMessage =
+                'We could not submit your application. Please try again.';
 
-            </div>
+        } finally {
 
-        </template>
-
-    </article>
-
-</template>
+            this.isSubmitting = false;
+        }
+    }
+}
